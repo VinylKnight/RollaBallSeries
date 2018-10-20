@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour {
         PlayerRigidBody = GetComponent<Rigidbody>();
 
     }
-    void Update()
+    void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
