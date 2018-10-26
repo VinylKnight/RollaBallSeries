@@ -21,4 +21,14 @@ public class PlayerMovement : MonoBehaviour {
 
 
     }
+    // Destroy everything that enters the trigger
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pickup"))
+        {
+            other.gameObject.SetActive(false);
+
+        }
+       
+    }
 }
