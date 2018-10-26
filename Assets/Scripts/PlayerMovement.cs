@@ -1,17 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
+
     [SerializeField]
     private Rigidbody PlayerRigidBody;
     [SerializeField]
     private float movementSpeed = 10;
-    void start()
+    private int count;
+    public Text countText;
+    public Text WinText;
+    void Start()
     {
         PlayerRigidBody = GetComponent<Rigidbody>();
-
+        count = 0;
+        SetCountText();
+        WinText.text = "";
     }
+
+
     void FixedUpdate()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -27,8 +36,18 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.CompareTag("Pickup"))
         {
             other.gameObject.SetActive(false);
-
+            count = count + 1;
+            SetCountText();
         }
        
+    }
+    private void SetCountText()
+    {
+        countText.text = "Count: " + count.ToString();
+        if (count >= 12)
+        {
+            WinText.text = "You Win!!";
+
+        }
     }
 }
